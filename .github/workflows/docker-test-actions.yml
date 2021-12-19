@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
       - name: test_fail
         id: need
         run: |
@@ -23,10 +26,7 @@ jobs:
       - name: echo digest
         run: |
           echo ${{ steps.need.outputs.digest }}
-          echo ${{ steps.need.outputs.digest }} > digest.8.1-cli-alpine
-
-      - name: checkout
-        uses: actions/checkout@v2
+          echo ${{ steps.need.outputs.digest }} > digest_8.1-cli-alpine
 
       - name: commit and push
         run: |
