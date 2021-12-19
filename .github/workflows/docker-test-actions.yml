@@ -13,6 +13,7 @@ jobs:
 
     steps:
       - name: test_fail
+        id: need
         run: |
           docker pull php:8.1-cli-alpine
           digest=$(docker images -q -f reference=php:8.1-cli-alpine)
@@ -21,4 +22,4 @@ jobs:
 
       - name: echo digest
         run: |
-          echo ${{ steps.test_fail.outputs.digest }}
+          echo ${{ steps.need.outputs.digest }}
