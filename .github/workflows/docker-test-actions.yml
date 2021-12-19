@@ -1,0 +1,17 @@
+name: Docker Test Actions
+
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: echo digest
+      - run: docker pull php:8.1-cli-alpine
+      - run: docker images
