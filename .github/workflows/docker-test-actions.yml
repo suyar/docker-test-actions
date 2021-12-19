@@ -12,7 +12,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: test fail
+        run: |
+          echo "fail"
+          exit 87
+
       - name: echo digest
+        if: ${{ failure() }}
         run: |
           docker pull php:8.1-cli-alpine
           docker images
+          docker images -q -f reference=php:8.1-cli-alpine
