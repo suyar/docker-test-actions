@@ -33,7 +33,7 @@ jobs:
           echo ${{ steps.need.outputs.olddigest }}
 
       - name: commit and push
-        if: ${{ steps.need.outputs.digest =='0a5a12f304be' }}
+        if: ${{ steps.need.outputs.digest == steps.need.outputs.olddigest }}
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "bot@zorzz.com"
