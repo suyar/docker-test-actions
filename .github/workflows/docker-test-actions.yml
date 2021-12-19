@@ -16,7 +16,8 @@ jobs:
         run: |
           docker pull php:8.1-cli-alpine
           digest=$(docker images -q -f reference=php:8.1-cli-alpine)
-          echo "::set-output name=digest::$digest"
+          echo ${digest}
+          echo "::set-output name=digest::${digest}"
 
       - name: echo digest
         run: |
