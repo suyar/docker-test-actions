@@ -20,16 +20,20 @@ jobs:
         run: |
           docker pull php:8.1-cli-alpine
           digest=$(docker images -q -f reference=php:8.1-cli-alpine)
+          olddigest=$(cat digest_8.1-cli-alpine)
           echo ${digest}
+          echo ${olddigest}
           echo "::set-output name=digest::${digest}"
+          echo "::set-output name=olddigest::${olddigest}"
 
       - name: echo digest
         run: |
           echo ${{ steps.need.outputs.digest }}
           echo ${{ steps.need.outputs.digest }} > digest_8.1-cli-alpine
+          echo ${{ steps.need.outputs.olddigest }}
 
       - name: commit and push
-        if: ${{ steps.need.outputs.digest }} == "0a5a12f304be"
+        if: ${{ steps.need.outputs.digest }} == "0a5a12f304be "
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "bot@zorzz.com"
