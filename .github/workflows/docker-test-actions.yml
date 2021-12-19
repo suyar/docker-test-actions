@@ -30,6 +30,7 @@ jobs:
         run: |
           echo ${{ steps.need.outputs.digest }}
           echo "${{ steps.need.outputs.digest }}" > digest_8.1-cli-alpine
+          cat digest_8.1-cli-alpine
           echo ${{ steps.need.outputs.olddigest }}
 
       - name: commit and push
