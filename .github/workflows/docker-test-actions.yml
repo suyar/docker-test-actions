@@ -18,6 +18,7 @@ jobs:
       - name: test_fail
         id: need
         run: |
+          set -eux
           docker pull php:8.1-cli-alpine
           digest=$(docker images -q -f reference=php:8.1-cli-alpine)
           cat digest_8.1-cli-alpine
