@@ -23,7 +23,7 @@ jobs:
           set -eux
           install_file=$FILE
           curl -sSLf -o $install_file https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions
-          hash_str=sha1sum $install_file | cut -d ' ' -f1
+          hash_str=$(sha1sum $install_file | cut -d ' ' -f1)
           echo $hash_str
           docker pull php:8.1-cli-alpine
           digest=$(docker images -q -f reference=php:8.1-cli-alpine)
