@@ -36,10 +36,12 @@ jobs:
 
       - name: echo digest
         run: |
+          set -eux
           echo ${{ steps.need.outputs.digest }}
           echo -n ${{ steps.need.outputs.digest }} > digest_8.1-cli-alpine
           cat digest_8.1-cli-alpine
           echo ${{ steps.need.outputs.olddigest }}
+          echo $([[ "${{ steps.need.outputs.olddigest }}" == "aaa" ]] && echo -n "need" || echo -n "notneed")
 
       - name: commit and push
         if: ${{ steps.need.outputs.digest != steps.need.outputs.olddigest }}
